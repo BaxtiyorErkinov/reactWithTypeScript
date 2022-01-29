@@ -1,25 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import axios from "axios";
+import Card from "./components/Card";
+import { CardVariant } from "./components/Card";
+import EventsExample from "./components/EventsExample";
+import UsersPage from "./components/UsersPage";
+import TodosPage from "./components/TodosPage";
+import TodosItemPage from "./components/TodosItemPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div>
+        <div>
+          <Link to="/users">Users</Link>
+          <Link to="/todos">Todos</Link>
+        </div>
+        {/*      <EventsExample></EventsExample>
+      <Card
+        onClick={(num) => console.log("clicked", num)}
+        width="200px"
+        height="200px"
+        variant={CardVariant.outlined}
+      >
+        <button>click</button>
+      </Card>*/}
+        <Routes>
+          <Route path="/users" element={<UsersPage />} />
+          <Route path="/todos" element={<TodosPage />} />
+          <Route path="/todos/:id" element={<TodosItemPage />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
